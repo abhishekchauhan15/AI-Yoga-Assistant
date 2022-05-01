@@ -1,3 +1,4 @@
+from flask import Flask,render_template,Response
 from unittest import result
 import tensorflow as tf
 import tensorflow_hub as hub
@@ -5,25 +6,37 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 
-#optional for GPU
+app=Flask(__name__)
 
-# gpus=tf.config.experimental.list_physical_devices('GPU')
-# for gpu in gpus:
-#     tf.config.experimental.set_memory_growth(gpu,True)
 
 #loding the model
 
 model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
 movenet=model.signatures['serving_default']
 
-#starting the webcam
 
-cap = cv2.VideoCapture(0)
+cap=cv2.VideoCapture(0)
 
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
 
+
+def make_1080p():
+    cap.set(3, 1920)
+    cap.set(4, 1080)
+
+def make_720p():
+    cap.set(3, 1280)
+    cap.set(4, 720)
+
+def make_480p():
+    cap.set(3, 640)
+    cap.set(4, 480)
+
+def change_res(width, height):
+    cap.set(3, width)
+    cap.set(4, height)
 
     #drawing the keypoints
 
@@ -81,31 +94,47 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
-    
 
-while (True):
-    ret, frame = cap.read()
+def generate_frames():
+    while True:
+            
+        ## read the camera frame
+        
+        success, frame = cap.read()
+        frame = cv2.flip(frame, 1)
 
-    #resize the image
-    img=frame.copy()
-    img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
-    input_img=tf.cast(img, dtype=tf.int32)
-
-    # detecting the image
-
-    results=movenet(input_img)
-    keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
-    
-    #showing the keypoints on to the screen
-    loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
-    
-    cv2.imshow('Users Yoga Pose', frame)
-
-    
-    if cv2.waitKey(10) & 0xff==ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+        if not success:
+            break
+        else:
+            #resize the image
+            img=frame.copy()
+            img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
+            input_img=tf.cast(img, dtype=tf.int32)
+                
+             # detecting the image
+            results=movenet(input_img)
+            keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
+            
+             #showing the keypoints on to the screen
+            loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
+            cv2.imshow('Users Yoga Pose', frame)
 
 
+
+            ret,buffer=cv2.imencode('.jpg',frame)
+            frame=buffer.tobytes()
+
+            yield(b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/video')
+def video():
+    return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+if __name__=="__main__":
+    app.run(debug=True)
