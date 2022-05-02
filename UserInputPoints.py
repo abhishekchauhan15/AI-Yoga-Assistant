@@ -3,10 +3,10 @@ import cv2
 import time 
 import PoseModule as pm
 
-cap=cv2.VideoCapture("Santosh_Trik.mp4")
+cap=cv2.VideoCapture(0)
 
 detector=pm.PoseDetector()
-
+7
 while True:
     success, img= cap.read()
     img= cv2.resize(img,(1280,728))
