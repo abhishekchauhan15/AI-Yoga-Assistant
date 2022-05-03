@@ -6,12 +6,12 @@ import PoseModule as pm
 cap=cv2.VideoCapture(0)
 
 detector=pm.PoseDetector()
-7
+
 while True:
     # success, img= cap.read()
     # img= cv2.resize(img,(1280,728))
-    # img=cv2.imread("images/tadasan.jpg")
-    img=cv2.imread("images/vrksana.jpg")
+    img=cv2.imread("images/tadasan.jpg")
+    # img=cv2.imread("images/vrksana.jpg")
     # img=cv2.imread("images/trikonasana.jpg")
     # img=cv2.imread("images/virabhadrasana.jpg")
     # img=cv2.imread("images/adho_mukha.jpeg")
@@ -21,11 +21,11 @@ while True:
     # print(lmlist)
     if len(lmlist) !=0:
         #right arm
-        # right_arm=detector.findAngle(img,12,14,16)
+        right_arm=detector.findAngle(img,12,14,16)
         #left arm
         left_arm=detector.findAngle(img,11,13,15)
         #right leg
-        # right_leg=detector.findAngle(img,24,26,28)
+        right_leg=detector.findAngle(img,24,26,28)
         #left leg
         left_leg=detector.findAngle(img,23,25,27)
 

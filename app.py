@@ -117,7 +117,7 @@ def generate_frames():
             
              #showing the keypoints on to the screen
             loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
-            cv2.imshow('Users Yoga Pose', frame)
+            # cv2.imshow('Users Yoga Pose', frame)
 
 
 
@@ -130,7 +130,7 @@ def generate_frames():
 
 @app.route('/')
 def index():
-    return render_template('./client/public/index.html')
+    return render_template('index.html')
 
 @app.route('/video')
 def video():
