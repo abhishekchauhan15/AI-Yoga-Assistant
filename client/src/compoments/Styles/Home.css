@@ -1,0 +1,60 @@
+.h-page{
+    text-align: center;
+}
+.menu{
+    display: flex;
+    letter-spacing: 1px;
+    margin-top: 0.8%;
+    margin-left: 1%;
+}
+.home{
+    margin-left: 5%;
+    font-size: 1rem;
+}
+.about{
+    margin-left: 5%;
+    font-size: 1rem;
+}
+.contact{
+    margin-left: 5%;
+    font-size: 1rem;
+}
+.in{
+    margin-left: 57%;
+    margin-top: 1.5%;
+    height: 2.2rem;
+}
+.up{
+    margin-left: 3%;
+    margin-top: 1.5%;
+    height: 2.2rem;
+}
+.middle{
+    display: flex;
+}
+.name-1{
+    font-size: 4rem;
+    height: 14rem;
+    width: 30rem;
+    margin-left: 18%;
+    margin-top: 15%;
+    text-align: left;
+}
+.intro{
+    font-size: 1.1rem;
+    text-align: left;
+    margin-left: 18%;
+    width: 30rem;
+    margin-top: -15%;
+}
+.go{
+    font-size: 2rem;
+    margin-left: -31%;
+    margin-top: 3%;
+}
+.img-1{
+    height: 62rem;
+    margin-top: -14%;
+    margin-left: 6%;
+    width: 59rem;
+}
