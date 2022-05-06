@@ -22,7 +22,7 @@ function Home() {
                     <button className='go'><p className="let">Let's Start</p></button>
                     <div className='icon'>
                         <p className="play"><FaPlayCircle/></p><p className="para">Ashtanga Yoga</p>
-                        <p className="play-2"><FaPlayCircle/></p><p className="para">Hatha Yoga</p>
+                        <p className="play-2"><FaPlayCircle/></p><p className="para-2">Hatha Yoga</p>
                         <p className='scroll'>SCROLL DOWN</p><p className="a-icon"><FiArrowDown/></p>
                     </div>
                 </div>

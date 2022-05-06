@@ -11,13 +11,22 @@
     margin-left: 5%;
     font-size: 1.1rem;
 }
+.home:hover{
+    cursor: pointer;
+}
 .about{
     margin-left: 5%;
     font-size: 1.1rem;
 }
+.about:hover{
+    cursor: pointer;
+}
 .contact{
     margin-left: 5%;
     font-size: 1.1rem;
+}
+.contact:hover{
+    cursor: pointer;
 }
 .in{
     margin-left: 57%;
@@ -64,11 +73,18 @@
     background-color: black;
     border-radius: 0.5rem;
     color: white;
+    box-shadow: inset 0 0 0 0 ;
+    transition: ease-out 0.3s;
     font-family: 'Roboto Mono', monospace;
 }
 .let{
     font-size: 1rem;
     margin-top: 9.5%;
+}
+.go:hover{
+    cursor: pointer;
+    box-shadow: inset 207px 0 0 0 #92E3A9;
+    color: #040C18;
 }
 .img-1{
     height: 62rem;
@@ -84,20 +100,38 @@
 }
 .play{
     display: flex;
-    width: 8%;
+    width: 35%;
     font-size: 2rem;
+}
+.play:hover{
+    cursor: pointer;
 }
 .play-2{
     margin-left: 20%;
     display: flex;
-    width: 8%;
+    width: 28%;
     font-size: 2rem;
 }
+.play-2:hover{
+    cursor: pointer;
+}
 .para{
-    margin-left: 1%;
+    margin-left: -27%;
     margin-top: 8%;
     height: 1.2rem;
     font-family: 'Roboto Mono', monospace;
+}
+.para:hover{
+    cursor: pointer;
+}
+.para-2{
+    margin-left: -20%;
+    margin-top: 8%;
+    height: 1.2rem;
+    font-family: 'Roboto Mono', monospace;
+}
+.para-2:hover{
+    cursor: pointer;
 }
 .scroll{
     margin-left: 84%;
