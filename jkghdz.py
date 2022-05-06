@@ -8,9 +8,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
-
-
-
+import math
 
 app=Flask(__name__)
 
@@ -32,6 +30,10 @@ cap=cv2.VideoCapture(0)
 detector=pm.PoseDetector()
 
 dataList=data.AngleData
+
+
+
+
 # print(dataList)
 
 
@@ -39,22 +41,6 @@ dataList=data.AngleData
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
 
-
-def make_1080p():
-    cap.set(3, 1920)
-    cap.set(4, 1080)
-
-def make_720p():
-    cap.set(3, 1280)
-    cap.set(4, 720)
-
-def make_480p():
-    cap.set(3, 640)
-    cap.set(4, 480)
-
-def change_res(width, height):
-    cap.set(3, width)
-    cap.set(4, height)
 
     #drawing the keypoints
 
@@ -113,23 +99,27 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_keypoints(frame, person, confidence_threshold)
 
 
+
 def compare():
-    # print('inside')
+    i=0
     for index in range(len(dataList)):
-            # for key in dataList[index]:
+        # for key in dataList[index]:
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
 
         if tadasan[0]-right_arm<5 and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Pose is Accurate 😎')
         else:
             print('Try it again!!! 😐')
-   
+        
+        
+    
 
+        
 def generate_frames():
     while True:
             
@@ -143,7 +133,7 @@ def generate_frames():
         else:
             #resize the image
             img=frame.copy()
-            compare()
+            # compare()
 
             img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
             input_img=tf.cast(img, dtype=tf.int32)
@@ -156,9 +146,9 @@ def generate_frames():
             loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
             cv2.imshow('Users Yoga Pose', frame)
 
-            for index in range(len(dataList)):
-                for key in dataList[index]:
-                    print(dataList[index][key])
+            # for index in range(len(dataList)):
+            #     for key in dataList[index]:
+            #         print(dataList[index][key])
 
             # points detection 
             frame=detector.findPose(frame,False)
@@ -166,25 +156,20 @@ def generate_frames():
             # print(lmlist)
             if len(lmlist) !=0:
                 #right arm
-                right_arm=detector.findAngle(frame,12,14,16)
-               
+                right_arm= math.floor(detector.findAngle(frame,12,14,16))
                 #left arm
-                left_arm=detector.findAngle(frame,11,13,15)
+                left_arm=math.floor(detector.findAngle(frame,11,13,15)) 
                 #right leg
-                right_leg=detector.findAngle(frame,24,26,28)
+                right_leg=math.floor(detector.findAngle(frame,24,26,28)) 
                 #left leg
-                left_leg=detector.findAngle(frame,23,25,27)
+                left_leg= math.floor(detector.findAngle(frame,23,25,27)) 
 
-               
+                
 
-            # cv2.imshow("Image", frame)
+                
+             # cv2.imshow("Image", frame)
             cv2.waitKey(1)
-
             
-
-            
-
-
 
             ret,buffer=cv2.imencode('.jpg',frame)
             frame=buffer.tobytes()
@@ -193,6 +178,11 @@ def generate_frames():
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
+           
+        
+
+
+            
 @app.route('/')
 def index():
     return render_template('index.html')
