@@ -1,14 +1,18 @@
 import './App.css';
-import './compoments/Home'
-import Home from './compoments/Home';
+import React from 'react'
+import { Router, Outlet } from 'react-location';
+import { routes, location } from "./router"
+
+
 
 function App() {
-  return (
-    <div className="App">
-      {/* <img src="{{ url_for('video') }}" width="50%"/> */}
-      <Home/>
-    </div>
-  );
+    return (
+        <Router routes={routes} location={location}>
+        <div className="App" >
+            <Outlet />
+        </div>
+        </Router>
+    );
 }
 
 export default App;
