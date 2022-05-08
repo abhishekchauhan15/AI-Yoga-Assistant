@@ -10,18 +10,12 @@ from matplotlib import pyplot as plt
 import data as data
 
 
-
-
-
 app=Flask(__name__)
 
-right_arm=-1
-left_arm=-1
-right_leg=-1
-left_leg=-1
 
-
-
+# global left_arm
+# global right_leg
+# global left_leg
 
 #loding the model
 
@@ -115,7 +109,7 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_keypoints(frame, person, confidence_threshold)
 
 
-def compare():
+def compare(right_arm):
    
     for index in range(len(dataList)):
             # for key in dataList[index]:
@@ -126,11 +120,19 @@ def compare():
         virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
         adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
 
-        if tadasan[0]-right_arm<20:
+   
+        if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<20:
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Pose is Accurate')
         else:
             print('Try Again')
+        
+    
+
+ 
+        
+        
+       
    
 
 def generate_frames():
@@ -146,7 +148,7 @@ def generate_frames():
         else:
             #resize the image
             img=frame.copy()
-            compare()
+         
 
             img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
             input_img=tf.cast(img, dtype=tf.int32)
@@ -159,19 +161,20 @@ def generate_frames():
             loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
             cv2.imshow('Users Yoga Pose', frame)
 
-            # for index in range(len(dataList)):
-            #     for key in dataList[index]:
-            #         print(dataList[index][key])
+            
 
             # points detection 
             frame=detector.findPose(frame,False)
             lmlist=detector.getPosition(frame,False)
+            # compare()
             # print(lmlist)
             if len(lmlist) !=0:
                 #right arm
-                right_arm=detector.findAngle(frame,12,14,16)
                 
-               
+                angle=int(detector.findAngle(frame,12,14,16))
+                compare(angle)
+                
+                
                 #left arm
                 # left_arm=detector.findAngle(frame,11,13,15)
                 #right leg
@@ -179,7 +182,7 @@ def generate_frames():
                 #left leg
                 # left_leg=detector.findAngle(frame,23,25,27)
 
-               
+            
 
             cv2.imshow("Image", frame)
             cv2.waitKey(1)
@@ -189,6 +192,8 @@ def generate_frames():
 
             yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+             
 
 
 @app.route('/')

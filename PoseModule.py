@@ -64,8 +64,7 @@ class PoseDetector:
              cv2.circle(img, (x3, y3), 5, (255, 0, 0), cv2.FILLED)
              cv2.putText(img,str(int(angle)),(x2-50, y2+50),
                         cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255),2)
-
-
+        return angle
 
 def main():
     cap = cv2.VideoCapture('videos/a.mp4')
