@@ -8,10 +8,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
-# from threading import Timer
 import time
-import threading
-import math
 
 
 
@@ -114,58 +111,61 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
 
 def compare_right_arm(right_arm):
    
+   
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
-        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+    # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+    # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+    # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+    # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+    # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
         
 
         
-        if math.isclose(tadasan[0],right_arm,rel_tol=5,abs_tol=0):
-            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Your right arm is Accurate')
-        else:
-            print('Right arm is not correct, try again')
+    if abs(tadasan[0]-right_arm)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        print('Your right arm is Accurate')
+    else:
+        print('Right arm is not correct, try again')
 
 
 
 
 def compare_left_arm(left_arm):
    
+   
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
-        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
         
 
         
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
-        if math.isclose(tadasan[1],left_arm,rel_tol=5,abs_tol=0):    
-            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Your left arm is Accurate')
-        else:
-            print('Left arm is not correct, try again')
+    if abs(tadasan[1]-left_arm)<=10:    
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        print('Your left arm is Accurate')
+    else:
+        print('Left arm is not correct, try again')
         
     
 
 
 
 def compare_right_leg(right_leg):
+    
    
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
-        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
         # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
         # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
         # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
@@ -174,35 +174,36 @@ def compare_right_leg(right_leg):
         
 
     
-        if math.isclose(tadasan[2],right_leg,rel_tol=5,abs_tol=0):
-            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Your right leg is Accurate')
+    if abs(tadasan[2]-right_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        print('Your right leg is Accurate')
             
-        else:
-            print('Right leg is not correct, try again')
+    else:
+        print('Right leg is not correct, try again')
 
 
 
 
 def compare_left_leg(left_leg):
+    
    
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
-        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
         
 
         
-        if math.isclose(tadasan[3],left_leg,rel_tol=5,abs_tol=0):
-            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Your left leg is Accurate')
-        else:
-            print('Left leg is not correct, try again')            
+    if abs(tadasan[3]-left_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        print('Your left leg is Accurate')
+    else:
+        print('Left leg is not correct, try again')            
         
     
 
@@ -250,44 +251,49 @@ def generate_frames():
 
             # compare()
             # print(lmlist)
-        if len(lmlist) !=0:
+            
+            if len(lmlist) !=0:
                 
-            #right arm
-            angle=int(detector.findAngle(frame,12,14,16))
+               #right arm
+               angle=int(detector.findAngle(frame,12,14,16))
         
-            compare_right_arm(angle)
+               compare_right_arm(angle)
+            
                 
                 
-            #left arm
-            angle=int(detector.findAngle(frame,11,13,15))
+               #left arm
+               angle=int(detector.findAngle(frame,11,13,15))
         
-            compare_left_arm(angle)
-                
-                
-            #right leg
-            angle=int(detector.findAngle(frame,24,26,28))
+               compare_left_arm(angle)
             
-            compare_right_leg(angle)
                 
                 
-            #left leg
-            angle=int(detector.findAngle(frame,23,25,27))
+               #right leg
+               angle=int(detector.findAngle(frame,24,26,28))
             
-            compare_left_leg(angle)
-
-
-            
-
-        cv2.imshow("Image", frame)
-        cv2.waitKey(1)
-
-        ret,buffer=cv2.imencode('.jpg',frame)
-        frame=buffer.tobytes()
-
-        yield(b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
+               compare_right_leg(angle)
              
+                
+                
+             #left leg
+               angle=int(detector.findAngle(frame,23,25,27))
+            
+               compare_left_leg(angle)
+
+              
+
+
+            cv2.imshow("Image", frame)
+            cv2.waitKey(1)
+
+            ret,buffer=cv2.imencode('.jpg',frame)
+            frame=buffer.tobytes()
+
+            yield(b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+                     
 
 
 @app.route('/')
