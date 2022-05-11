@@ -125,11 +125,13 @@ def compare_right_arm(right_arm):
         
 
         
-        if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<20:
+        if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<30:
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your right arm is Accurate')
         else:
-            print('Try Again')
+            print('Right arm is not correct, try agian')
+
+
 
 
 def compare_left_arm(left_arm):
@@ -146,20 +148,62 @@ def compare_left_arm(left_arm):
         
 
         
-        if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<20:
+        if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<30:
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your left arm is Accurate')
         else:
-            print('Try Again')
+            print('Left arm is not correct, try again')
+        
+    
+
+
+
+def compare_right_leg(right_leg):
+   
+    for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+        if tadasan[2]-right_leg>0 and tadasan[2]-right_leg<30:
+            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+            print('Your right leg is Accurate')
+        else:
+            print('Right leg is not correct, try again')
+
+
+
+
+def compare_left_leg(left_leg):
+   
+    for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+        if tadasan[3]-left_leg>0 and tadasan[3]-left_leg<30:
+            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+            print('Your left leg is Accurate')
+        else:
+            print('Left leg is not correct, try again')            
         
     
 
  
-        
-        
-       
-   
-
 def generate_frames():
     while True:
             
@@ -194,8 +238,8 @@ def generate_frames():
             # compare()
             # print(lmlist)
             if len(lmlist) !=0:
-                #right arm
                 
+                #right arm
                 angle=int(detector.findAngle(frame,12,14,16))
                 print(angle)
                 compare_right_arm(angle)
@@ -205,10 +249,19 @@ def generate_frames():
                 angle=int(detector.findAngle(frame,11,13,15))
                 print(angle)
                 compare_left_arm(angle)
+                
+                
                 #right leg
-                # right_leg=detector.findAngle(frame,24,26,28)
+                angle=detector.findAngle(frame,24,26,28)
+                print(angle)
+                compare_right_leg(angle)
+                
+                
                 #left leg
-                # left_leg=detector.findAngle(frame,23,25,27)
+                angle=detector.findAngle(frame,23,25,27)
+                print(angle)
+                compare_left_leg(angle)
+
 
             
 
