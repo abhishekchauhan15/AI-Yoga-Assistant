@@ -19,8 +19,8 @@ app=Flask(__name__)
 
 #loding the model
 
-model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
-movenet=model.signatures['serving_default']
+model = hub.load(r"C:\Users\hp\Documents\Downloads\movenet_multipose_lightning_1")
+movenet = model.signatures['serving_default']
 
 
 cap=cv2.VideoCapture(0)
@@ -108,22 +108,47 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
+        
 
-def compare(right_arm):
+
+def compare_right_arm(right_arm):
    
     for index in range(len(dataList)):
             # for key in dataList[index]:
+
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
         vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
         balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
         trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
         virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
         adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
 
-   
+        
         if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<20:
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Pose is Accurate')
+            print('Your right arm is Accurate')
+        else:
+            print('Try Again')
+
+
+def compare_left_arm(left_arm):
+   
+    for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+        if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<20:
+            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+            print('Your left arm is Accurate')
         else:
             print('Try Again')
         
@@ -172,11 +197,14 @@ def generate_frames():
                 #right arm
                 
                 angle=int(detector.findAngle(frame,12,14,16))
-                compare(angle)
+                print(angle)
+                compare_right_arm(angle)
                 
                 
                 #left arm
-                # left_arm=detector.findAngle(frame,11,13,15)
+                angle=int(detector.findAngle(frame,11,13,15))
+                print(angle)
+                compare_left_arm(angle)
                 #right leg
                 # right_leg=detector.findAngle(frame,24,26,28)
                 #left leg
