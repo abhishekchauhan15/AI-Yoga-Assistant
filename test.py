@@ -8,14 +8,15 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
+# from threading import Timer
+import time
+import threading
+import math
+
 
 
 app=Flask(__name__)
 
-
-# global left_arm
-# global right_leg
-# global left_leg
 
 #loding the model
 
@@ -113,7 +114,7 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
 
 def compare_right_arm(right_arm):
    
-    for index in range(len(dataList)):
+    # for index in range(len(dataList)):
             # for key in dataList[index]:
 
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
@@ -125,18 +126,18 @@ def compare_right_arm(right_arm):
         
 
         
-        if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<30:
+        if math.isclose(tadasan[0],right_arm,rel_tol=5,abs_tol=0):
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your right arm is Accurate')
         else:
-            print('Right arm is not correct, try agian')
+            print('Right arm is not correct, try again')
 
 
 
 
 def compare_left_arm(left_arm):
    
-    for index in range(len(dataList)):
+    # for index in range(len(dataList)):
             # for key in dataList[index]:
 
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
@@ -148,7 +149,8 @@ def compare_left_arm(left_arm):
         
 
         
-        if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<30:
+        # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
+        if math.isclose(tadasan[1],left_arm,rel_tol=5,abs_tol=0):    
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your left arm is Accurate')
         else:
@@ -160,21 +162,22 @@ def compare_left_arm(left_arm):
 
 def compare_right_leg(right_leg):
    
-    for index in range(len(dataList)):
+    # for index in range(len(dataList)):
             # for key in dataList[index]:
 
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
         
 
-        
-        if tadasan[2]-right_leg>0 and tadasan[2]-right_leg<30:
+    
+        if math.isclose(tadasan[2],right_leg,rel_tol=5,abs_tol=0):
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your right leg is Accurate')
+            
         else:
             print('Right leg is not correct, try again')
 
@@ -183,7 +186,7 @@ def compare_right_leg(right_leg):
 
 def compare_left_leg(left_leg):
    
-    for index in range(len(dataList)):
+    # for index in range(len(dataList)):
             # for key in dataList[index]:
 
         tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
@@ -195,7 +198,7 @@ def compare_left_leg(left_leg):
         
 
         
-        if tadasan[3]-left_leg>0 and tadasan[3]-left_leg<30:
+        if math.isclose(tadasan[3],left_leg,rel_tol=5,abs_tol=0):
             #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
             print('Your left leg is Accurate')
         else:
@@ -205,7 +208,16 @@ def compare_left_leg(left_leg):
 
  
 def generate_frames():
-    while True:
+
+    # delay=20
+
+    # start_time=threading.Timer(delay,generate_frames)
+
+    # start_time.start()
+
+    timeout=20
+    timeout_start=time.time()
+    while time.time()<timeout_start+timeout:
             
         ## read the camera frame
         
@@ -235,43 +247,44 @@ def generate_frames():
             # points detection 
             frame=detector.findPose(frame,False)
             lmlist=detector.getPosition(frame,False)
+
             # compare()
             # print(lmlist)
-            if len(lmlist) !=0:
+        if len(lmlist) !=0:
                 
-                #right arm
-                angle=int(detector.findAngle(frame,12,14,16))
-                print(angle)
-                compare_right_arm(angle)
-                
-                
-                #left arm
-                angle=int(detector.findAngle(frame,11,13,15))
-                print(angle)
-                compare_left_arm(angle)
+            #right arm
+            angle=int(detector.findAngle(frame,12,14,16))
+        
+            compare_right_arm(angle)
                 
                 
-                #right leg
-                angle=detector.findAngle(frame,24,26,28)
-                print(angle)
-                compare_right_leg(angle)
+            #left arm
+            angle=int(detector.findAngle(frame,11,13,15))
+        
+            compare_left_arm(angle)
                 
                 
-                #left leg
-                angle=detector.findAngle(frame,23,25,27)
-                print(angle)
-                compare_left_leg(angle)
+            #right leg
+            angle=int(detector.findAngle(frame,24,26,28))
+            
+            compare_right_leg(angle)
+                
+                
+            #left leg
+            angle=int(detector.findAngle(frame,23,25,27))
+            
+            compare_left_leg(angle)
 
 
             
 
-            cv2.imshow("Image", frame)
-            cv2.waitKey(1)
+        cv2.imshow("Image", frame)
+        cv2.waitKey(1)
 
-            ret,buffer=cv2.imencode('.jpg',frame)
-            frame=buffer.tobytes()
+        ret,buffer=cv2.imencode('.jpg',frame)
+        frame=buffer.tobytes()
 
-            yield(b'--frame\r\n'
+        yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
              
