@@ -1,25 +1,101 @@
+.yoga{
+    margin-top: -0.5%;
+    /* background-color: #F7FAFC; */
+}
+.gifL{
+    margin-top: -45%;
+    height: 50rem;
+    margin-left: -48%;
+}
+.gifR{
+    height: 50rem;
+    margin-right: -47%;
+    margin-bottom: -52.2%;
+}
 .card-1{
     width: 15rem;
     border-style: solid;
-    height: 24rem;
-    margin-left: 2%;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 16%;
+    margin-top: 0.5%;
+}
+.card-2{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 10%;
+    margin-top: 0.5%;
+}
+.card-3{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 10%;
+    margin-top: 0.5%;
+}
+.card-4{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 16%;
+    margin-top: 2%;
+}
+.card-5{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.card-6{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 20rem;
+    margin-left: 10%;
     margin-top: 2%;
 }
 .asan-1{
-    width: 13rem;
+    width: 10rem;
+    height: 10rem;
 }
 .btn{
-    margin-top: -10%;
-    font-size: 4rem;
-    text-align: left;
-    margin-left: 85%;
+    margin-top: -6%;
+    margin-left: 35%;
+    font-size: 3rem;
+    width: 4rem;
+}
+.btn:hover{
+    cursor: pointer;
 }
 .asan-para-1{
-    margin-top: -5%;
-    text-align: left;
-    margin-left: 1%;
+    margin-top: -7%;
+    font-weight: 450;
 }
 .asan-name-1{
-    text-align: left;
-    margin-left: 1%;
+    margin-top: -1%;
+}
+.group-1{
+    display: flex;
+    margin-top: -0.7%;
+}
+.group-2{
+    display: flex;
 }
