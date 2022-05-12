@@ -8,7 +8,9 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
-import time
+from threading import Timer
+import pyttsx3
+
 
 
 
@@ -107,7 +109,7 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_keypoints(frame, person, confidence_threshold)
 
         
-
+engine = pyttsx3.init() 
 
 def compare_right_arm(right_arm):
    
@@ -126,9 +128,15 @@ def compare_right_arm(right_arm):
         
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        print('Your right arm is Accurate')
+        engine.say("Your right arm is accurate") 
+        engine.runAndWait()
+      
     else:
-        print('Right arm is not correct, try again')
+        engine.say("Right arm is not correct, try again") 
+        engine.runAndWait()
+
+
+
 
 
 
@@ -151,19 +159,18 @@ def compare_left_arm(left_arm):
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
     if abs(tadasan[1]-left_arm)<=10:    
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        print('Your left arm is Accurate')
+        engine.say("Your left arm is accurate") 
+        engine.runAndWait()       
     else:
-        print('Left arm is not correct, try again')
-        
+        engine.say("Your left arm is not accurate , try again")
+        engine.runAndWait() 
+    
     
 
 
 
 def compare_right_leg(right_leg):
     
-   
-    # for index in range(len(dataList)):
-            # for key in dataList[index]:
 
     tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
         # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
@@ -176,10 +183,15 @@ def compare_right_leg(right_leg):
     
     if abs(tadasan[2]-right_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        print('Your right leg is Accurate')
+        engine.say("Your right leg is accurate") 
+        engine.runAndWait()
+        
             
     else:
-        print('Right leg is not correct, try again')
+        engine.say("Your right leg is not accurate, try again") 
+        engine.runAndWait()
+        
+       
 
 
 
@@ -201,21 +213,19 @@ def compare_left_leg(left_leg):
         
     if abs(tadasan[3]-left_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        print('Your left leg is Accurate')
+        engine.say("Your left leg is accurate") 
+        engine.runAndWait()
+     
     else:
-        print('Left leg is not correct, try again')            
+        engine.say("Your left leg is not accurate, try again") 
+        engine.runAndWait()
+
+   
         
     
 
  
 def generate_frames():
-
-    # delay=20
-
-    # start_time=threading.Timer(delay,generate_frames)
-
-    # start_time.start()
-
     timeout=20
     timeout_start=time.time()
     while time.time()<timeout_start+timeout:
@@ -235,7 +245,7 @@ def generate_frames():
             img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
             input_img=tf.cast(img, dtype=tf.int32)
                 
-             # detecting the image
+            # detecting the image
             results=movenet(input_img)
             keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
             
@@ -253,12 +263,12 @@ def generate_frames():
             # print(lmlist)
             
             if len(lmlist) !=0:
-                
+                  
                #right arm
                angle=int(detector.findAngle(frame,12,14,16))
         
                compare_right_arm(angle)
-            
+               
                 
                 
                #left arm
@@ -275,16 +285,16 @@ def generate_frames():
              
                 
                 
-             #left leg
+               #left leg
                angle=int(detector.findAngle(frame,23,25,27))
             
                compare_left_leg(angle)
 
-              
-
-
-            cv2.imshow("Image", frame)
-            cv2.waitKey(1)
+                 
+                 
+                
+            # cv2.imshow("Image", frame)
+            cv2.waitKey(1) 
 
             ret,buffer=cv2.imencode('.jpg',frame)
             frame=buffer.tobytes()
