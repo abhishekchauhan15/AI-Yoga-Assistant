@@ -8,19 +8,19 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
+from threading import Timer
+import pyttsx3
+
+
 
 
 app=Flask(__name__)
 
 
-# global left_arm
-# global right_leg
-# global left_leg
-
 #loding the model
 
-model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
-movenet=model.signatures['serving_default']
+model = hub.load(r"C:\Users\hp\Documents\Downloads\movenet_multipose_lightning_1")
+movenet = model.signatures['serving_default']
 
 
 cap=cv2.VideoCapture(0)
@@ -108,35 +108,127 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
+        
+engine = pyttsx3.init() 
 
-def compare(right_arm):
+def compare_right_arm(right_arm):
    
-    for index in range(len(dataList)):
+   
+    # for index in range(len(dataList)):
             # for key in dataList[index]:
-        tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
-        vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
-        balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
-        trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
-        virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
-        adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+    # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+    # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+    # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+    # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+    # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+    if abs(tadasan[0]-right_arm)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your right arm is accurate") 
+        engine.runAndWait()
+      
+    else:
+        engine.say("Right arm is not correct, try again") 
+        engine.runAndWait()
+
+
+
+
+
+
+
+def compare_left_arm(left_arm):
+   
+   
+    # for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+        # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
+    if abs(tadasan[1]-left_arm)<=10:    
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your left arm is accurate") 
+        engine.runAndWait()       
+    else:
+        engine.say("Your left arm is not accurate , try again")
+        engine.runAndWait() 
+    
+    
+
+
+
+def compare_right_leg(right_leg):
+    
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+    
+    if abs(tadasan[2]-right_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your right leg is accurate") 
+        engine.runAndWait()
+        
+            
+    else:
+        engine.say("Your right leg is not accurate, try again") 
+        engine.runAndWait()
+        
+       
+
+
+
+
+def compare_left_leg(left_leg):
+    
+   
+    # for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+    if abs(tadasan[3]-left_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your left leg is accurate") 
+        engine.runAndWait()
+     
+    else:
+        engine.say("Your left leg is not accurate, try again") 
+        engine.runAndWait()
 
    
-        if tadasan[0]-right_arm>0 and tadasan[0]-right_arm<20:
-            #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-            print('Pose is Accurate')
-        else:
-            print('Try Again')
         
     
 
  
-        
-        
-       
-   
-
 def generate_frames():
-    while True:
+    timeout=20
+    timeout_start=time.time()
+    while time.time()<timeout_start+timeout:
             
         ## read the camera frame
         
@@ -153,7 +245,7 @@ def generate_frames():
             img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
             input_img=tf.cast(img, dtype=tf.int32)
                 
-             # detecting the image
+            # detecting the image
             results=movenet(input_img)
             keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
             
@@ -166,34 +258,52 @@ def generate_frames():
             # points detection 
             frame=detector.findPose(frame,False)
             lmlist=detector.getPosition(frame,False)
+
             # compare()
             # print(lmlist)
-            if len(lmlist) !=0:
-                #right arm
-                
-                angle=int(detector.findAngle(frame,12,14,16))
-                compare(angle)
-                
-                
-                #left arm
-                # left_arm=detector.findAngle(frame,11,13,15)
-                #right leg
-                # right_leg=detector.findAngle(frame,24,26,28)
-                #left leg
-                # left_leg=detector.findAngle(frame,23,25,27)
-
             
+            if len(lmlist) !=0:
+                  
+               #right arm
+               angle=int(detector.findAngle(frame,12,14,16))
+        
+               compare_right_arm(angle)
+               
+                
+                
+               #left arm
+               angle=int(detector.findAngle(frame,11,13,15))
+        
+               compare_left_arm(angle)
+            
+                
+                
+               #right leg
+               angle=int(detector.findAngle(frame,24,26,28))
+            
+               compare_right_leg(angle)
+             
+                
+                
+               #left leg
+               angle=int(detector.findAngle(frame,23,25,27))
+            
+               compare_left_leg(angle)
 
-            cv2.imshow("Image", frame)
-            cv2.waitKey(1)
+                 
+                 
+                
+            # cv2.imshow("Image", frame)
+            cv2.waitKey(1) 
 
             ret,buffer=cv2.imencode('.jpg',frame)
             frame=buffer.tobytes()
 
             yield(b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-             
+
+                     
 
 
 @app.route('/')
