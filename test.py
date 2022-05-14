@@ -8,9 +8,13 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
+<<<<<<< HEAD
+import os
+=======
 from threading import Timer
 import pyttsx3
 
+>>>>>>> 92025f89d99a6404641b951576411c16e5ad48f8
 
 
 
@@ -19,8 +23,15 @@ app=Flask(__name__)
 
 #loding the model
 
+<<<<<<< HEAD
+model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
+# test=os.chdir("C:\\Users\\welcome\\Downloads\\movenet_multipose_lightning_1.tar")
+# model=hub.load("C:\\Users\\welcome\\Downloads\\movenet_multipose_lightning_1.tar")
+movenet=model.signatures['serving_default']
+=======
 model = hub.load(r"C:\Users\hp\Documents\Downloads\movenet_multipose_lightning_1")
 movenet = model.signatures['serving_default']
+>>>>>>> 92025f89d99a6404641b951576411c16e5ad48f8
 
 
 cap=cv2.VideoCapture(0)
