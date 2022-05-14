@@ -4,6 +4,7 @@ import { FaPlayCircle } from "react-icons/fa";
 import { FiArrowDown } from "react-icons/fi";
 import Yoga from '../images/Yoga.png'
 import { Link } from 'react-location';
+import Footer from './Footer';
 
 function Home() {
   return (
@@ -17,7 +18,7 @@ function Home() {
                 <button className='up'>Sign Up</button>
             </div>
             <div className='middle'>
-                <div className='title'>
+                <div className='title1'>
                     <h1 className='name-1'>Your Personal AI Yoga Trainer</h1>
                     <p className='intro'>Appointing personal AI yoga trainer at home to keep you fit and healthy. We provide Personal AI Yoga Trainer theme with appointments booking system.</p>
                     <Link to="/tracks"><button className='go'><p className="let">Let's Start</p></button></Link>
@@ -30,6 +31,7 @@ function Home() {
                 <img className="img-1" src={Yoga} alt="Yoga"/>
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }
