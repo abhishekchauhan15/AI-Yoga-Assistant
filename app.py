@@ -1,21 +1,37 @@
 from flask import Flask,render_template,Response
 from unittest import result
+import numpy as np
+import cv2
+import time 
+import PoseModule as pm
 import tensorflow as tf
 import tensorflow_hub as hub
-import cv2
 from matplotlib import pyplot as plt
-import numpy as np
+import data as data
+# from threading import Timer
+import win32api
+import pyttsx3
+import pythoncom
+# import pywintypes
 
 app=Flask(__name__)
 
 
 #loding the model
 
-model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
-movenet=model.signatures['serving_default']
+model = hub.load(r"C:\Users\welcome\Downloads\tf\movenet_multipose_lightning_1.tar")
+# https://tfhub.dev/google/tfjs-model/movenet/multipose/lightning/1
+# model = hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
+movenet = model.signatures['serving_default']
 
 
 cap=cv2.VideoCapture(0)
+
+detector=pm.PoseDetector()
+
+dataList=data.AngleData
+# print(dataList)
+
 
 # Check if the webcam is opened correctly
 if not cap.isOpened():
@@ -94,9 +110,127 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
+        
+engine = pyttsx3.init() 
 
+def compare_right_arm(right_arm):
+   
+   
+    # for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+    # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+    # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+    # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+    # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+    # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+    if abs(tadasan[0]-right_arm)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your right arm is accurate") 
+        engine.runAndWait()
+      
+    else:
+        engine.say("Right arm is not correct, try again") 
+        engine.runAndWait()
+
+
+
+
+
+
+
+def compare_left_arm(left_arm):
+   
+   
+    # for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+        # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
+    if abs(tadasan[1]-left_arm)<=10:    
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your left arm is accurate") 
+        engine.runAndWait()       
+    else:
+        engine.say("Your left arm is not accurate , try again")
+        engine.runAndWait() 
+    
+    
+
+
+
+def compare_right_leg(right_leg):
+    
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+    
+    if abs(tadasan[2]-right_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your right leg is accurate") 
+        engine.runAndWait()
+        
+            
+    else:
+        engine.say("Your right leg is not accurate, try again") 
+        engine.runAndWait()
+        
+       
+
+
+
+
+def compare_left_leg(left_leg):
+    
+   
+    # for index in range(len(dataList)):
+            # for key in dataList[index]:
+
+    tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+        # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
+        # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
+        # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
+        # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
+        # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
+        
+
+        
+    if abs(tadasan[3]-left_leg)<=10:
+    #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
+        engine.say("Your left leg is accurate") 
+        engine.runAndWait()
+     
+    else:
+        engine.say("Your left leg is not accurate, try again") 
+        engine.runAndWait()
+
+   
+        
+    
+
+ 
 def generate_frames():
-    while True:
+    timeout=800
+    timeout_start=time.time()
+    while time.time()<timeout_start+timeout:
             
         ## read the camera frame
         
@@ -108,24 +242,71 @@ def generate_frames():
         else:
             #resize the image
             img=frame.copy()
+         
+
             img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
             input_img=tf.cast(img, dtype=tf.int32)
                 
-             # detecting the image
+            # detecting the image
             results=movenet(input_img)
             keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
             
              #showing the keypoints on to the screen
             loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
-            # cv2.imshow('Users Yoga Pose', frame)
+            cv2.imshow('Users Yoga Pose', frame)
 
+            
 
+            # points detection 
+            frame=detector.findPose(frame,False)
+            lmlist=detector.getPosition(frame,False)
+
+            # compare()
+            # print(lmlist)
+            
+            if len(lmlist) !=0:
+                  
+               #right arm
+               angle=int(detector.findAngle(frame,12,14,16))
+               print("right_arm :", angle)
+        
+               compare_right_arm(angle)
+               
+                
+                
+               #left arm
+               angle=int(detector.findAngle(frame,11,13,15))
+               print("left_Arm :", angle)
+               compare_left_arm(angle)
+            
+                
+                
+               #right leg
+               angle=int(detector.findAngle(frame,24,26,28))
+               print("right_leg :", angle)
+               compare_right_leg(angle)
+             
+                
+                
+               #left leg
+               angle=int(detector.findAngle(frame,23,25,27))
+               print("left_leg :", angle)
+               compare_left_leg(angle)
+
+                 
+                 
+                
+            # cv2.imshow("Image", frame)
+            cv2.waitKey(1) 
 
             ret,buffer=cv2.imencode('.jpg',frame)
             frame=buffer.tobytes()
 
             yield(b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+                     
 
 
 @app.route('/')
