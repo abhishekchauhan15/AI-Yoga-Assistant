@@ -83,7 +83,7 @@
 }
 .go:hover{
     cursor: pointer;
-    box-shadow: inset 207px 0 0 0 #92E3A9;
+    box-shadow: inset 207px 0 0 0 #4AD295;
     color: #040C18;
 }
 .img-1{
@@ -91,6 +91,7 @@
     margin-top: -15%;
     margin-left: 4%;
     width: 59rem;
+    margin-bottom: -8%;
 }
 .icon{
     display: flex;
