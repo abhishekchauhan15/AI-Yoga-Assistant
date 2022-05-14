@@ -8,6 +8,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import data as data
+import os
 
 
 app=Flask(__name__)
@@ -20,6 +21,8 @@ app=Flask(__name__)
 #loding the model
 
 model=hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
+# test=os.chdir("C:\\Users\\welcome\\Downloads\\movenet_multipose_lightning_1.tar")
+# model=hub.load("C:\\Users\\welcome\\Downloads\\movenet_multipose_lightning_1.tar")
 movenet=model.signatures['serving_default']
 
 
