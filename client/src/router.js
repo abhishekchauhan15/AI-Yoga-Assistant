@@ -1,34 +1,35 @@
-import React from "react"
-import {  Route,  ReactLocation } from "react-location";
-import Footer from "./Footer";
-import Home from "./Home";
-import Tracks from "./Tracks";
-import Yoga from "./Yoga";
+import React from "react";
+import { Route, ReactLocation } from "react-location";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import Tracks from "./components/Tracks";
+import Yoga from "./components/Yoga";
+import Dashboard from "./components/Dashboard";
 
 export const routes: Route[] = [
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/yoga",
+    element: <Yoga />,
+  },
 
+  {
+    path: "/tracks",
+    element: <Tracks />,
+  },
+
+  {
+    path: "/footer",
+    element: <Footer />,
+  },
 {
-        path:"/",
-        element:<Home/>
-
-},
-{
-        path:"/yoga",
-        element:<Yoga/>
-},
-
-{
-        path:"/tracks",
-        element:<Tracks/>
-},
-
-{
-        path:"/footer",
-        element:<Footer/>
-},
-
-
-
+                path: '/dashboard',
+                element: <Dashboard/>
+          
+  },
 ];
 
 export const location = new ReactLocation();

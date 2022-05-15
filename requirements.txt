@@ -1,2 +1,3 @@
 pip install threaded
 pip install pyttsx3
+pip install flask-cors

@@ -113,20 +113,16 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
 
     
 
-def speech(text):
-    engine = pyttsx3.init() 
-    engine.setProperty( "rate", 200 )
-    engine.setProperty( "volume", 1.0 )
-    engine.say(text) 
-    engine.runAndWait()
+# def speech(text):
+#     engine = pyttsx3.init() 
+#     # engine.setProperty( "rate", 200 )
+#     # engine.setProperty( "volume", 1.0 )
+#     engine.say(text) 
+#     # engine.runAndWait()
 
 def compare_right_arm(right_arm):
-   
-   
-    # for index in range(len(dataList)):
-            # for key in dataList[index]:
-
     tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
+    
     # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
     # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
     # trikonasana=[y for x, y in list(dataList[3].items()) if type(y) == int]
@@ -137,13 +133,15 @@ def compare_right_arm(right_arm):
         
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        sleep(10)
-        speech("Your right arm is accurate") 
+        # sleep(10)
+        print("Your right arm is accurate")
+        # speech("Your right arm is accurate") 
        
       
     else:
-        sleep(10)
-        speech("Right arm is not correct, try again")
+        # sleep(10)
+        print("Your right arm is not accurate")
+        # speech("Right arm is not correct, try again")
 
 
 
@@ -167,14 +165,14 @@ def compare_left_arm(left_arm):
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
     if abs(tadasan[1]-left_arm)<=10:    
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        sleep(10)
         
-        speech("Your left arm is accurate") 
+        
+        print("Your left arm is accurate") 
            
     else:
-        sleep(10)
         
-        speech("Your left arm is not accurate , try again")
+        
+        print("Your left arm is not accurate , try again")
     
     
     
@@ -191,11 +189,11 @@ def compare_right_leg(right_leg):
         
     if abs(tadasan[2]-right_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        sleep(10)
-        speech("Your right leg is accurate")         
+        
+        print("Your right leg is accurate")         
     else:
-        sleep(10)
-        speech("Your right leg is not accurate, try again") 
+        
+        print("Your right leg is not accurate, try again") 
         
        
 
@@ -217,22 +215,20 @@ def compare_left_leg(left_leg):
         
     if abs(tadasan[3]-left_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-       speech("Your left leg is accurate") 
+       print("Your left leg is accurate") 
      
     else:
-        speech("Your left leg is not accurate, try again") 
+        print("Your left leg is not accurate, try again") 
 
 
-   
-        
+
     
-
- 
+    
 def generate_frames():
-    # timeout=800
-    # timeout_start=time.time()
-    # while time.time()<timeout_start+timeout:
-    while True:
+    timeout=30
+    timeout_start=time.time()
+    while time.time()<timeout_start+timeout:
+    # while True:
             
         ## read the camera frame
         
@@ -275,21 +271,21 @@ def generate_frames():
             #left arm
             angle=int(detector.findAngle(frame,11,13,15))
             # print("left_Arm :", angle)
-            # compare_left_arm(angle)
+            compare_left_arm(angle)
         
             
             
             #right leg
             angle=int(detector.findAngle(frame,24,26,28))
             # print("right_leg :", angle)
-            # compare_right_leg(angle)
+            compare_right_leg(angle)
             
             
             
             #left leg
             angle=int(detector.findAngle(frame,23,25,27))
             # print("left_leg :", angle)
-            # compare_left_leg(angle)
+            compare_left_leg(angle)
 
                 
                 
@@ -310,6 +306,16 @@ def generate_frames():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/dashboard', methods = ['POST'])
+def result():
+    player_id = request.json
+    if player_id:
+       data = get_player(player_id)
+       name = str(data['name'][0])
+       return jsonify(name)
+    return "No player information is given"
 
 @app.route('/video')
 def video():

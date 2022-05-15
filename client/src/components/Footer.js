@@ -1,5 +1,5 @@
 import React from 'react'
-import './Styles/Footer.css'
+import '../Styles/Footer.css'
 import { GrYoga } from "react-icons/gr";
 import { GoMarkGithub} from "react-icons/go";
 import {IoLogoTwitter} from "react-icons/io5";
