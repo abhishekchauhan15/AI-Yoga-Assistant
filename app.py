@@ -268,7 +268,7 @@ def generate_frames():
             #right arm
             angle=int(detector.findAngle(frame,12,14,16))
             # print("right_arm :", angle)
-            # compare_right_arm(angle)
+            compare_right_arm(angle)
             
             
             
