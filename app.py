@@ -14,13 +14,16 @@ import pyttsx3
 import pythoncom
 # import pywintypes
 from time import sleep
+import schedule
+import time
+from playsound import playsound
 
 app=Flask(__name__)
 
 
 #loding the model
 
-model = hub.load(r"C:\Users\welcome\Downloads\tf\movenet_multipose_lightning_1.tar")
+model = hub.load(r"C:\Users\hp\Documents\Downloads\movenet_multipose_lightning_1")
 # https://tfhub.dev/google/tfjs-model/movenet/multipose/lightning/1
 # model = hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
 movenet = model.signatures['serving_default']
@@ -134,13 +137,13 @@ def compare_right_arm(right_arm):
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
         # sleep(10)
-        print("Your right arm is accurate")
+        print("your right arm is accurate")
         # speech("Your right arm is accurate") 
        
       
     else:
         # sleep(10)
-        print("Your right arm is not accurate")
+        playsound(r'C:\Users\hp\desktop\AI-Yoga-Assistant\sounds\right_arm_accuracy.mp3')
         # speech("Right arm is not correct, try again")
 
 
@@ -221,10 +224,15 @@ def compare_left_leg(left_leg):
         print("Your left leg is not accurate, try again") 
 
 
+    
+
+
 
     
     
 def generate_frames():
+    
+    
     timeout=30
     timeout_start=time.time()
     while time.time()<timeout_start+timeout:
@@ -258,9 +266,10 @@ def generate_frames():
 
         # compare()
         # print(lmlist)
-        
+        # def printing():
         if len(lmlist) !=0:
                 
+               
             #right arm
             angle=int(detector.findAngle(frame,12,14,16))
             # print("right_arm :", angle)
@@ -287,6 +296,13 @@ def generate_frames():
             # print("left_leg :", angle)
             compare_left_leg(angle)
 
+        
+        # schedule.every(5).seconds.do(printing)
+
+        # while 1:
+        #      schedule.run_pending()
+        #      time.sleep(1)
+
                 
                 
             
@@ -300,7 +316,11 @@ def generate_frames():
                     b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-                     
+# schedule.every(5).seconds.do(generate_frames)
+
+# while 1:
+#     schedule.run_pending()
+#     time.sleep(1)
 
 
 @app.route('/')

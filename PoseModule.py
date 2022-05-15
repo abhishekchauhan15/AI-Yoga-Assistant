@@ -55,8 +55,11 @@ class PoseDetector:
         
         if angle<0:
             angle+=360
-        
+
+
         print(angle)
+        
+        
 
         if draw:
              cv2.circle(img, (x1, y1), 5, (255, 0, 0), cv2.FILLED)
