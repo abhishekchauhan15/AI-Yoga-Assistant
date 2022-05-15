@@ -1,8 +1,9 @@
 import React from "react"
 import {  Route,  ReactLocation } from "react-location";
-import Home from "./components/Home";
-import Tracks from "./components/Tracks";
-import Yoga from "./components/Yoga";
+import Footer from "./Footer";
+import Home from "./Home";
+import Tracks from "./Tracks";
+import Yoga from "./Yoga";
 
 export const routes: Route[] = [
 
@@ -19,6 +20,11 @@ export const routes: Route[] = [
 {
         path:"/tracks",
         element:<Tracks/>
+},
+
+{
+        path:"/footer",
+        element:<Footer/>
 },
 
 
