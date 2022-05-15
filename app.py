@@ -13,6 +13,7 @@ import win32api
 import pyttsx3
 import pythoncom
 # import pywintypes
+from time import sleep
 
 app=Flask(__name__)
 
@@ -110,8 +111,14 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
-        
-engine = pyttsx3.init() 
+    
+
+def speech(text):
+    engine = pyttsx3.init() 
+    engine.setProperty( "rate", 200 )
+    engine.setProperty( "volume", 1.0 )
+    engine.say(text) 
+    engine.runAndWait()
 
 def compare_right_arm(right_arm):
    
@@ -130,12 +137,13 @@ def compare_right_arm(right_arm):
         
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        engine.say("Your right arm is accurate") 
-        engine.runAndWait()
+        sleep(10)
+        speech("Your right arm is accurate") 
+       
       
     else:
-        engine.say("Right arm is not correct, try again") 
-        engine.runAndWait()
+        sleep(10)
+        speech("Right arm is not correct, try again")
 
 
 
@@ -144,8 +152,6 @@ def compare_right_arm(right_arm):
 
 
 def compare_left_arm(left_arm):
-   
-   
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
@@ -161,19 +167,21 @@ def compare_left_arm(left_arm):
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
     if abs(tadasan[1]-left_arm)<=10:    
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        engine.say("Your left arm is accurate") 
-        engine.runAndWait()       
+        sleep(10)
+        
+        speech("Your left arm is accurate") 
+           
     else:
-        engine.say("Your left arm is not accurate , try again")
-        engine.runAndWait() 
+        sleep(10)
+        
+        speech("Your left arm is not accurate , try again")
+    
     
     
 
 
 
 def compare_right_leg(right_leg):
-    
-
     tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
         # vrksana=[y for x, y in list(dataList[1].items()) if type(y) == int]
         # balasana=[y for x, y in list(dataList[2].items()) if type(y) == int]
@@ -181,17 +189,13 @@ def compare_right_leg(right_leg):
         # virabhadrasana=[y for x, y in list(dataList[4].items()) if type(y) == int]
         # adhomukha=[y for x, y in list(dataList[5].items()) if type(y) == int]
         
-
-    
     if abs(tadasan[2]-right_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        engine.say("Your right leg is accurate") 
-        engine.runAndWait()
-        
-            
+        sleep(10)
+        speech("Your right leg is accurate")         
     else:
-        engine.say("Your right leg is not accurate, try again") 
-        engine.runAndWait()
+        sleep(10)
+        speech("Your right leg is not accurate, try again") 
         
        
 
@@ -199,8 +203,6 @@ def compare_right_leg(right_leg):
 
 
 def compare_left_leg(left_leg):
-    
-   
     # for index in range(len(dataList)):
             # for key in dataList[index]:
 
@@ -215,12 +217,11 @@ def compare_left_leg(left_leg):
         
     if abs(tadasan[3]-left_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        engine.say("Your left leg is accurate") 
-        engine.runAndWait()
+       speech("Your left leg is accurate") 
      
     else:
-        engine.say("Your left leg is not accurate, try again") 
-        engine.runAndWait()
+        speech("Your left leg is not accurate, try again") 
+
 
    
         
@@ -228,82 +229,79 @@ def compare_left_leg(left_leg):
 
  
 def generate_frames():
-    timeout=800
-    timeout_start=time.time()
-    while time.time()<timeout_start+timeout:
+    # timeout=800
+    # timeout_start=time.time()
+    # while time.time()<timeout_start+timeout:
+    while True:
             
         ## read the camera frame
         
         success, frame = cap.read()
         frame = cv2.flip(frame, 1)
 
-        if not success:
-            break
-        else:
-            #resize the image
-            img=frame.copy()
+        #resize the image
+        img=frame.copy()
          
 
-            img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
-            input_img=tf.cast(img, dtype=tf.int32)
-                
-            # detecting the image
-            results=movenet(input_img)
-            keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
+        img =tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 192,256)
+        input_img=tf.cast(img, dtype=tf.int32)
             
-             #showing the keypoints on to the screen
-            loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
-            cv2.imshow('Users Yoga Pose', frame)
-
-            
-
-            # points detection 
-            frame=detector.findPose(frame,False)
-            lmlist=detector.getPosition(frame,False)
-
-            # compare()
-            # print(lmlist)
-            
-            if len(lmlist) !=0:
-                  
-               #right arm
-               angle=int(detector.findAngle(frame,12,14,16))
-               print("right_arm :", angle)
+        # detecting the image
+        results=movenet(input_img)
+        keypoints_with_scores=results['output_0'].numpy()[:,:,:51].reshape((6,17,3)) #finding the main keypoints that we need for detection
         
-               compare_right_arm(angle)
-               
+            #showing the keypoints on to the screen
+        loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
+        cv2.imshow('Users Yoga Pose', frame)
+
+        
+
+        # points detection 
+        frame=detector.findPose(frame,False)
+        lmlist=detector.getPosition(frame,False)
+
+        # compare()
+        # print(lmlist)
+        
+        if len(lmlist) !=0:
                 
-                
-               #left arm
-               angle=int(detector.findAngle(frame,11,13,15))
-               print("left_Arm :", angle)
-               compare_left_arm(angle)
+            #right arm
+            angle=int(detector.findAngle(frame,12,14,16))
+            # print("right_arm :", angle)
+            # compare_right_arm(angle)
             
-                
-                
-               #right leg
-               angle=int(detector.findAngle(frame,24,26,28))
-               print("right_leg :", angle)
-               compare_right_leg(angle)
-             
-                
-                
-               #left leg
-               angle=int(detector.findAngle(frame,23,25,27))
-               print("left_leg :", angle)
-               compare_left_leg(angle)
+            
+            
+            #left arm
+            angle=int(detector.findAngle(frame,11,13,15))
+            # print("left_Arm :", angle)
+            # compare_left_arm(angle)
+        
+            
+            
+            #right leg
+            angle=int(detector.findAngle(frame,24,26,28))
+            # print("right_leg :", angle)
+            # compare_right_leg(angle)
+            
+            
+            
+            #left leg
+            angle=int(detector.findAngle(frame,23,25,27))
+            # print("left_leg :", angle)
+            # compare_left_leg(angle)
 
-                 
-                 
                 
-            # cv2.imshow("Image", frame)
-            cv2.waitKey(1) 
+                
+            
+        # cv2.imshow("Image", frame)
+        cv2.waitKey(1) 
 
-            ret,buffer=cv2.imencode('.jpg',frame)
-            frame=buffer.tobytes()
+        ret,buffer=cv2.imencode('.jpg',frame)
+        frame=buffer.tobytes()
 
-            yield(b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        yield(b'--frame\r\n'
+                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
                      
