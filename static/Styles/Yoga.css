@@ -1,0 +1,141 @@
+.yoga{
+    margin-top: -0.5%;
+    /* background-color: #F7FAFC; */
+}
+.menu{
+    display: flex;
+    margin-top: -1%;
+}
+.home{
+    margin-left: 5%;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.home:hover{
+    cursor: pointer;
+}
+.about{
+    margin-left: 5%;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.about:hover{
+    cursor: pointer;
+}
+.contact{
+    margin-left: 5%;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.contact:hover{
+    cursor: pointer;
+}
+.gifL{
+    margin-top: -45%;
+    height: 50rem;
+    margin-left: -48%;
+}
+.gifR{
+    height: 50rem;
+    margin-right: -47%;
+    margin-bottom: -52.2%;
+}
+.play{
+    height: 2rem;
+    width: 2rem;
+    margin-left: 35%;
+    margin-top: -15%;
+}
+.play:hover{
+    cursor: pointer;
+}
+.play1{
+    background-color: white;
+    border: none;
+    margin-left: 35%;
+}
+.card-1{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 16%;
+    margin-top: 0.5%;
+}
+.card-2{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 10%;
+    margin-top: 0.5%;
+}
+.card-3{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 10%;
+    margin-top: 0.5%;
+}
+.card-4{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 16%;
+    margin-top: 2%;
+}
+.card-5{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.card-6{
+    width: 15rem;
+    border-style: solid;
+    /* border-color: #00FF49; */
+    border-width: 1.2px;
+    border-radius: 3%;
+    height: 19rem;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.asan-1{
+    width: 11rem;
+    height: 11rem;
+    margin-left: 13%;
+}
+
+.asan-para-1{
+    margin-top: -7%;
+    margin-left: 2%;
+    font-size: 0.8rem;
+    font-weight: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+.asan-name-1{
+    margin-top: -1%;
+    margin-left: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+.group-1{
+    display: flex;
+    margin-top: -0.8%;
+}
+.group-2{
+    display: flex;
+}

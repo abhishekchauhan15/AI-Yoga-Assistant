@@ -1,0 +1,11 @@
+flask==2.1.2
+unittest2==1.1.0
+numpy==1.22.4
+times==0.7
+tensorflow==2.9.1
+tensorflow_hub==0.12.0
+matplotlib==3.5.2
+pyttsx3==2.90
+opencv-python==4.6.0.66
+mediapipe==0.8.10
+schedule==1.1.0

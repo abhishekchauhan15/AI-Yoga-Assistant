@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" type="text/css" href='{{
+    url_for('static',filename='styles/charts.css') }}'>
+<!-- !second chart -->
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <body>
+    
+
+    <div class="chart2">
+      <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
+      </div>
+      <div class="chart3">
+      <canvas id="MyChart" style="width: 100%; max-width: 600px"></canvas>
+    </div>
+    
+    <script>
+      var xValues = [5, 10, 15, 20,25,30,35, 40, 45,50];
+
+      new Chart("MyChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              data: [89, 56, 16, 76, 78, 11, 73, 89, 73, 78],
+              borderColor: "red",
+              fill: false,
+            },
+            {
+              data: [
+                60, 70, 78, 90, 20, 89, 40, 50, 69, 76,
+              ],
+              borderColor: "green",
+              fill: false,
+            },
+            {
+              data: [56, 50, 78, 56, 78, 45, 89, 76, 90, 96],
+              borderColor: "blue",
+              fill: false,
+            },{
+              data: [10, 30, 25, 84, 76, 34, 10, 40, 70, 20],
+              borderColor: "orange",
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          legend: { display: false },
+        },
+      });
+    </script>
+
+    <div class="content">
+      <ul class="contents">
+        <li>ACCURACY: 65</li><br>
+        <li>ASANA: Vrkasana</li><br>
+        <li>DURATION: 15s</li><br>
+        <li>X-axis:Time </li><br>
+        <li>Y-axis:Accuracy  </li>
+      </ul>
+    </div>
+    
+
+    <!-- third chart -->
+
+    <script>
+      var xValues = [5, 10, 15, 20,25,30,35, 40, 45,50];
+      var yValues = [67, 78, 68, 89, 69, 59, 70, 61, 84, 78];
+      
+      new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              fill: false,
+              lineTension: 0,
+              backgroundColor: "rgba(0,0,255,1.0)",
+              borderColor: "rgba(0,0,255,0.1)",
+              data: yValues,
+            },
+          ],
+        }
+      });
+    </script>
+    <div class="contentr">
+      <ul class="contentsr">
+        <li>ACCURACY: 65</li><br>
+        <li>ASANA: Vrkasana</li><br>
+        <li>DURATION: 15s</li><br>
+        <li>X-axis:Time </li><br>
+        <li>Y-axis:Accuracy </li>
+      </ul>
+    </div>
+
+    </div>
+  </body>
+</html>

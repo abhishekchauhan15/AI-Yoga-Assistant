@@ -1,0 +1,56 @@
+.input{
+    margin-left: 15%;
+    margin-top: -2%;
+    text-align: right;
+}
+.vid-input{
+    width: 40rem;
+    border-radius: 15px;
+}
+.gif{
+    margin-left: 10%;
+    margin-top: -1%;
+}
+.gif1{
+    height: 35rem;
+}
+.vid-page{
+    display: flex;
+}
+.yoga-head{
+    margin-left: 40.2%;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+.hr{
+    position: relative;
+    top: 2px;
+    border: none;
+    height: 3px;
+    background: #4ad295;
+    margin-bottom: 50px;
+}
+.top{
+    display: flex;
+}
+.chart-button{
+  height: 3.8rem;
+  width: 13rem;
+  margin-left: -190%;
+  margin-top: 230%;
+  background-color: black;
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: inset 0 0 0 0;
+  transition: ease-out 0.3s;
+  font-family: "Roboto Mono", monospace;
+}
+.see{
+  font-size: 1rem;
+  margin-top: 9.5%;
+}
+.chart-button:hover{
+  cursor: pointer;
+  box-shadow: inset 207px 0 0 0 #4ad295;
+  color: #040c18;
+}

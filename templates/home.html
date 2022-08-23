@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href='{{
+    url_for('static',filename='styles/Home.css') }}'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="static/images/meditation 2.png">
+    <title>Yoga AI Trainer</title>
+  </head>
+  <body>
+    <div class="h-page">
+      <div class="content">
+        <div class="menu">
+          <h5 class="home">Home</h5>
+          <h5 class="about">About</h5>
+          <h5 class="contact">Contact</h5>
+          <button class="in">Sign In</button>
+          <button class="up">Sign Up</button>
+        </div>
+        <div class="middle">
+          <div class="title1">
+            <h1 class="name-1">Your Personal AI Yoga Trainer</h1>
+            <p class="intro">
+              Appointing personal AI yoga trainer at home to keep you fit and
+              healthy. We provide Personal AI Yoga Trainer theme with
+              appointments booking system.
+            </p>
+            <form action="/tracks">
+              <button class="go"><p class="let">Let's Start</p></button>
+            </form>
+
+            <div class="icon">
+              <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+              <p class="para">Ashtanga Yoga</p>
+              <button class="play2"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+              <p class="para-2">Hatha Yoga</p>
+              <p class="scroll">SCROLL DOWN</p>
+              <button class="down"><svg class="down1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z"/></svg></button>
+            </div>
+          </div>
+          <img
+            class="img-1"
+            src="{{url_for('static', filename='images/Yoga.png')}}"
+            alt="Yoga"
+          />
+        </div>
+      </div>
+      <footer />
+    </div>
+  </body>
+</html>

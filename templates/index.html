@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" type="text/css" href='{{ url_for('static',filename='styles/index.css') }}'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <h2 class="yoga-head">Vrksasana Asana</h2>
+    <hr class="hr"></hr>
+     <div class="vid-page">
+      <div class="gif">
+        <img class="gif1" src="{{url_for('static', filename='images/gif3.gif')}}" alt="Vrksana" />
+      </div>
+      <div class="input">
+        <img class="vid-input" src="{{ url_for('video') }}" width="50%" />
+      </div>
+      <form action="/charts">
+      <button class="chart-button"><p class="see">See Your Accuracy</p></button>
+    </form>
+    </div>
+  
+  </body>
+</html>

@@ -1,0 +1,86 @@
+.footer{
+    margin-top: 5%;
+    background-color: #4AD295;
+    padding-bottom: 1%;
+    color: black;
+}
+.footer-head{
+    margin-top: -1%;
+    padding-top: 1.5%;
+    padding-bottom: -1%;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+.title{
+    text-align: left;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 50%;
+    width: 25%;
+    font-family: 'Libre Baskerville', serif;
+}
+.main-content{
+    display: flex;
+    margin-top: -16%;
+    padding-left: 14%;
+}
+.container-1{
+    margin-left: 50%;
+    text-align: left;
+    width: 20%;
+}
+.container-2{
+    margin-left: 8%;
+    width: 300PX;
+    
+}
+.f-format{
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+.l-format{
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+.languages{
+    display: flex;
+}
+.language-1{
+    margin-top: -5.6%;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 3%;
+}
+.icons{
+    text-align: center;
+    margin-right: 70%;
+    font-size: 120px
+}
+.png{
+    font-weight: 500;
+    padding-left: 4%;
+}
+.github{
+    text-decoration: none;
+    outline: none;
+    color: black;
+    font-size: 25px;
+    margin-right: 0.5%;
+}
+.linkedin{
+    text-decoration: none;
+    outline: none;
+    color: black;
+    font-size: 25px;
+    margin-right: 0.5%;
+}
+.icon-2{
+    margin-left: -7%;
+}
+.twitter{
+    text-decoration: none;
+    outline: none;
+    color: black;
+    font-size: 25px;
+}

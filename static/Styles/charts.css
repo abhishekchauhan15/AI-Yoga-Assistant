@@ -1,0 +1,65 @@
+.chart-container {
+    width: 700px;
+    height:700px;
+    
+}
+.content{
+    /* margin-top: -20%; */
+    
+    /* font-size: 2rem; */
+}
+
+.box{
+    background-color: lightgrey;
+  width: 300px;
+  border: 5px solid green;
+  padding: 20px;
+  margin: 20px;
+  margin-top: -15%;
+  margin-left: 9%;
+
+}
+.headl{
+    font-size: 2rem;
+}
+
+.lans{
+    font-size: 1.5rem;
+}
+.line{
+    display: flex;
+    flex-direction: row;
+}
+
+.chart2{
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.chart3{
+    margin-left: 55%;
+    margin-top: -20%;
+}
+.content{
+    background-color: lightgrey;
+  width: 300px;
+  border: 5px solid green;
+  padding: -10px;
+  margin: 20px;
+  margin-left: 14%;
+  margin-top: 4%;
+}
+.contents{
+    font-size: 1.3rem;
+}
+.contentr{
+    background-color: lightgrey;
+  width: 300px;
+  border: 5px solid green;
+  padding: -10px;
+  margin: 20px;
+  margin-left: 65%;
+  margin-top: -18.9%;
+}
+.contentsr{
+    font-size: 1.3rem;
+}

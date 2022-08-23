@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href='{{ url_for('static',filename='styles/Tracks.css') }}'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+</head>
+        <body>
+            <div class='track'>
+                <h1 class='head'>Select What You Need !</h1>
+                <div class='mid'>
+                <div class='pic'>
+                <img class="cover" src="{{url_for('static', filename='images/track.png')}}" alt="Track"/>
+                </div>
+                <div class='button'>
+                    <form action="/yoga">
+                        <button class='bgnr'>Beginners Track</button><br></br>
+                        <button class='power'>Power Yogaa Track</button><br></br>
+                        <button class='power'>Immunity Booster Track</button><br></br>
+                        <button class='power'>Yoga in Pregnancy Track</button><br></br>
+                        <button class='power'>Cardiovascular Yoga Track</button><br></br>
+                        <button class='power'>Yoga for Migraine Track</button><br>
+                        <button class='power1'>Yoga for Asthma Track</button>
+              
+            
+                       </form>
+        
+                </div>
+                </div>
+            </div>
+    
+</body>
+</html>

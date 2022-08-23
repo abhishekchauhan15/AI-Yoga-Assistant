@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href='{{ url_for('static',filename='styles/Yoga.css') }}'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+</head>
+        <body>
+          <div class="yoga">
+            <div class="menu">
+              <h5 class="home">Home</h5>
+              <h5 class="about">About</h5>
+              <h5 class="contact">Contact</h5>
+            </div>
+            <div class="group-1">
+              <div class="card-1">
+                <img class="asan-1" src="{{url_for('static', filename='images/vrksana.jpg')}}" alt="Vrksana" />
+                <h2 class="asan-name-1">Vrksasana Asana</h2>
+                <p class="asan-para-1">
+                  A classic standing posture, It establishes strength and balance, and
+                  helps you feel centered.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+              <div class="card-2">
+                <img class="asan-1" src="{{url_for('static', filename='images/adho-mukha.png')}}" alt="Adho Mukha" />
+                <h2 class="asan-name-1">Adho Mukha Asana</h2>
+                <p class="asan-para-1">
+                  It strengthens the core and improves circulation, while providing
+                  full-body stretch.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+              <div class="card-3">
+                <img class="asan-1" src="{{url_for('static', filename='images/balasana.jpg')}}" alt="Balasana" />
+                <h2 class="asan-name-1">Balasana</h2>
+                <p class="asan-para-1">
+                  Balasana is a restful pose that can be sequenced between more
+                  challenging asanas.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+            </div>
+      
+            <div class="group-2">
+              <div class="card-4">
+                <img class="asan-1" src="{{url_for('static', filename='images/tad-asan.jpg')}}" alt="Tad Asana" />
+                <h2 class="asan-name-1">Tad Asana</h2>
+                <p class="asan-para-1">
+                  The foundation of all standing poses, It makes a resting pose, or
+                  tool to improve posture.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+              <div class="card-5">
+                <img class="asan-1" src="{{url_for('static', filename='images/trikonasana.jpg')}}" alt="Trikon Asana" />
+                <h2 class="asan-name-1">Trikon Asana</h2>
+                <p class="asan-para-1">
+                  It is a quintessential standing pose that stretches and strengthens
+                  the whole body.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+              <div class="card-6">
+                <img class="asan-1" src="{{url_for('static', filename='images/virabhadrasana.jpg')}}" alt="Virbhadra Asana" />
+                <h2 class="asan-name-1">Virbhadra Asana</h2>
+                <p class="asan-para-1">
+                  It is a foundational yoga pose that balances flexibility and
+                  strength in true warrior fashion.
+                </p>
+                <p class="btn">
+                  <form action="/index">
+                    <button class="play1"><svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"/></svg></button>
+                   </form>
+                </p>
+              </div>
+            </div>
+          
+          </div>
+         
+      
+</body>
+</html>
