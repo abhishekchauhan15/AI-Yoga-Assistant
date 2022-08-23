@@ -66,6 +66,7 @@ HTML, CSS, JavaScript
 
 Python, Flask, Open CV, Mediapipe, Tensorflow Hub
 
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -93,3 +94,5 @@ What's the year 2048 going to look like? What new problems will arise? The theme
 | Security and Privacy 	| ![Security and Privacy](https://i.ibb.co/7gfBd9s/Security-Light-Text-Light-Logo-2x.png) 	| What security challenges do we face in modern online and offline world with the permeance of technology into every aspect of life? How will you solve them in accessible ways? 	|
 
 ## HAPPY HACKING!
+=======
+>>>>>>> 019662d31b65c9694fa277a1f486460a4649c1f7

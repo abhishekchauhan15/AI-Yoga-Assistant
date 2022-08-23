@@ -15,6 +15,8 @@ from time import sleep
 import schedule
 import time
 import matplotlib.pyplot as plt
+import gtts  
+from playsound import playsound  
 
 app=Flask(__name__)
 #loding the model
@@ -134,13 +136,19 @@ def compare_right_arm(right_arm):
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
         # sleep(10)
-        print("Your right arm is accurate")
+        # print("Your right arm is accurate")
+        t1 = gtts.gTTS("Your right arm is accurate") 
+        t1.save("right_arm.mp3")    
+        playsound("right_arm.mp3")  
 
         # speech("Your right arm is accurate") 
     else:
         # sleep(10)
-        print("Your right arm is not accurate")
+        # print("Your right arm is not accurate")
         # speech("Right arm is not correct, try again")
+        t1 = gtts.gTTS("Your right arm is not accurate") 
+        t1.save("right_arm_no.mp3")    
+        playsound("right_arm_no.mp3")  
 
     return acc
 
@@ -164,9 +172,15 @@ def compare_left_arm(left_arm):
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
     if abs(tadasan[1]-left_arm)<=10:    
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        print("Your left arm is accurate")  
+        # print("Your left arm is accurate")
+        t1 = gtts.gTTS("Your left arm is accurate") 
+        t1.save("left_arm.mp3")    
+        playsound("left_arm.mp3")    
     else:
-        print("Your left arm is not accurate , try again")
+        # print("Your left arm is not accurate , try again")
+        t1 = gtts.gTTS("Your left arm is not accurate , try again") 
+        t1.save("left_arm_no.mp3")    
+        playsound("left_arm_no.mp3")  
     
     return acc
     
@@ -187,9 +201,16 @@ def compare_right_leg(right_leg):
     if abs(tadasan[2]-right_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
         
-        print("Your right leg is accurate")         
+        # print("Your right leg is accurate")
+        t1 = gtts.gTTS("Your right leg is accurate") 
+        t1.save("right_leg.mp3")    
+        playsound("right_leg.mp3") 
+                 
     else:
-        print("Your right leg is not accurate, try again") 
+        # print("Your right leg is not accurate, try again") 
+        t1 = gtts.gTTS("Your right leg is not accurate, try again") 
+        t1.save("right_leg_no.mp3")    
+        playsound("right_leg_no.mp3") 
 
     return acc
         
@@ -212,9 +233,15 @@ def compare_left_leg(left_leg):
 
     if abs(tadasan[3]-left_leg and left_leg<tadasan[3] )<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-       print("Your left leg is accurate") 
+    #    print("Your left leg is accurate") 
+        t1 = gtts.gTTS("Your left leg is accurate") 
+        t1.save("left_leg.mp3")    
+        playsound("left_leg.mp3") 
     else:
-        print("Your left leg is not accurate, try again") 
+        # print("Your left leg is not accurate, try again") 
+        t1 = gtts.gTTS("Your left leg is not accurate, try again") 
+        t1.save("left_leg_no.mp3")    
+        playsound("left_leg_no.mp3") 
     
     return acc
 
