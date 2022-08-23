@@ -5,7 +5,7 @@ gTTs==2.2.4
 unittest2==1.1.0
 numpy==1.22.4
 times==0.7
-tensorflow==2.9.1
+tensorflow-cpu==2.9.1
 tensorflow_hub==0.12.0
 matplotlib==3.5.2
 pyttsx3==2.90
