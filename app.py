@@ -40,8 +40,6 @@ def make_1080p():
     cap.set(3, 1920)
     cap.set(4, 1080)
 
-
-
 def make_720p():
     cap.set(3, 1280)
     cap.set(4, 720)
@@ -90,7 +88,6 @@ EDGES = {
 
 
 # drawing the connections
-
 def draw_connections(frame, keypoints, edges, confidence_threshold):
     y, x, c = frame.shape
     shaped = np.squeeze(np.multiply(keypoints, [y,x,1]))
@@ -102,9 +99,10 @@ def draw_connections(frame, keypoints, edges, confidence_threshold):
         
         if (c1 > confidence_threshold) & (c2 > confidence_threshold):      
             cv2.line(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0,0,255), 2)
+
+
             
 # looping through each person
-
 def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshold):
     for person in keypoints_with_scores:
         draw_connections(frame, person, edges, confidence_threshold)
@@ -118,6 +116,8 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
 #     # engine.setProperty( "volume", 1.0 )
 #     engine.say(text) 
 #     # engine.runAndWait()
+
+
 
 def compare_right_arm(right_arm):
     tadasan=[y for x, y in list(dataList[0].items()) if type(y) == int]
@@ -136,19 +136,19 @@ def compare_right_arm(right_arm):
     if abs(tadasan[0]-right_arm)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
         # sleep(10)
-        # print("Your right arm is accurate")
-        t1 = gtts.gTTS("Your right arm is accurate") 
-        t1.save("right_arm.mp3")    
-        playsound("right_arm.mp3")  
+        print("Your right arm is accurate")
+        # t1 = gtts.gTTS("Your right arm is accurate") 
+        # t1.save("right_arm.mp3")    
+        # playsound("right_arm.mp3")  
 
         # speech("Your right arm is accurate") 
     else:
         # sleep(10)
-        # print("Your right arm is not accurate")
+        print("Your right arm is not accurate")
         # speech("Right arm is not correct, try again")
-        t1 = gtts.gTTS("Your right arm is not accurate") 
-        t1.save("right_arm_no.mp3")    
-        playsound("right_arm_no.mp3")  
+        # t1 = gtts.gTTS("Your right arm is not accurate") 
+        # t1.save("right_arm_no.mp3")    
+        # playsound("right_arm_no.mp3")  
 
     return acc
 
@@ -172,15 +172,15 @@ def compare_left_arm(left_arm):
         # if tadasan[1]-left_arm>0 and tadasan[1]-left_arm<50:
     if abs(tadasan[1]-left_arm)<=10:    
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-        # print("Your left arm is accurate")
-        t1 = gtts.gTTS("Your left arm is accurate") 
-        t1.save("left_arm.mp3")    
-        playsound("left_arm.mp3")    
+        print("Your left arm is accurate")
+        # t1 = gtts.gTTS("Your left arm is accurate") 
+        # t1.save("left_arm.mp3")    
+        # playsound("left_arm.mp3")    
     else:
-        # print("Your left arm is not accurate , try again")
-        t1 = gtts.gTTS("Your left arm is not accurate , try again") 
-        t1.save("left_arm_no.mp3")    
-        playsound("left_arm_no.mp3")  
+        print("Your left arm is not accurate , try again")
+        # t1 = gtts.gTTS("Your left arm is not accurate , try again") 
+        # t1.save("left_arm_no.mp3")    
+        # playsound("left_arm_no.mp3")  
     
     return acc
     
@@ -201,16 +201,16 @@ def compare_right_leg(right_leg):
     if abs(tadasan[2]-right_leg)<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
         
-        # print("Your right leg is accurate")
-        t1 = gtts.gTTS("Your right leg is accurate") 
-        t1.save("right_leg.mp3")    
-        playsound("right_leg.mp3") 
+        print("Your right leg is accurate")
+        # t1 = gtts.gTTS("Your right leg is accurate") 
+        # t1.save("right_leg.mp3")    
+        # playsound("right_leg.mp3") 
                  
     else:
-        # print("Your right leg is not accurate, try again") 
-        t1 = gtts.gTTS("Your right leg is not accurate, try again") 
-        t1.save("right_leg_no.mp3")    
-        playsound("right_leg_no.mp3") 
+        print("Your right leg is not accurate, try again") 
+        # t1 = gtts.gTTS("Your right leg is not accurate, try again") 
+        # t1.save("right_leg_no.mp3")    
+        # playsound("right_leg_no.mp3") 
 
     return acc
         
@@ -233,15 +233,15 @@ def compare_left_leg(left_leg):
 
     if abs(tadasan[3]-left_leg and left_leg<tadasan[3] )<=10:
     #  and tadasan[1]-left_arm<5 and tadasan[0]-right_leg<5 and tadasan[0]-left_leg<5:
-    #    print("Your left leg is accurate") 
-        t1 = gtts.gTTS("Your left leg is accurate") 
-        t1.save("left_leg.mp3")    
-        playsound("left_leg.mp3") 
+       print("Your left leg is accurate") 
+        # t1 = gtts.gTTS("Your left leg is accurate") 
+        # t1.save("left_leg.mp3")    
+        # playsound("left_leg.mp3") 
     else:
-        # print("Your left leg is not accurate, try again") 
-        t1 = gtts.gTTS("Your left leg is not accurate, try again") 
-        t1.save("left_leg_no.mp3")    
-        playsound("left_leg_no.mp3") 
+        print("Your left leg is not accurate, try again") 
+        # t1 = gtts.gTTS("Your left leg is not accurate, try again") 
+        # t1.save("left_leg_no.mp3")    
+        # playsound("left_leg_no.mp3") 
     
     return acc
 
@@ -278,11 +278,11 @@ def generate_frames(arr):
         frame=detector.findPose(frame,False)
         lmlist=detector.getPosition(frame,False)
         
-        if len(lmlist) !=0:
+        if len(lmlist)!=0:
             
             #right arm
-            angle=int(detector.findAngle(frame,12,14,16))
-            accuracy=compare_right_arm(angle)
+            RightArmAngle=int(detector.findAngle(frame,12,14,16))
+            accuracy=compare_right_arm(RightArmAngle)
             # print("acc: ", accuracy)
             if (count<=16 and accuracy!=0):
                 arr=np.append(arr, accuracy)
@@ -352,7 +352,6 @@ def accuracyCaluclation (arr):
 @app.route("/")
 def home():
      return render_template("home.html")
-
 
 @app.route('/tracks')
 def tracks():
